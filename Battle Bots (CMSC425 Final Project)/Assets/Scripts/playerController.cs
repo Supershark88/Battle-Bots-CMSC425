@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetMouseButtonDown (0)) {
-			Fire ();
+			//Fire ();
 		}
 	}
 
