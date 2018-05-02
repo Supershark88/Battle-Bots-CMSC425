@@ -7,7 +7,8 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame ()
     {
-        SceneManager.LoadScene("Test");
+        PlayerPrefs.SetInt("Scrap", 500);
+        SceneManager.LoadScene("Upgrades");
     }
 
     public void QuitGame()
