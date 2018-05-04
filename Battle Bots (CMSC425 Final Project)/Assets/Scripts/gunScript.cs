@@ -7,8 +7,9 @@ public class gunScript : MonoBehaviour {
 	public float range = 100f;
 	public float fireRate = 1f;
 
-	public GameObject laser;
-	public Transform laserSpawn;
+
+	/* public GameObject laser;
+	public Transform laserSpawn; */
 	public Camera fpsCam;
 
 	public GameObject impactEffect;
@@ -44,22 +45,18 @@ public class gunScript : MonoBehaviour {
 			}
 
 			GameObject impact = Instantiate (impactEffect, hit.point, Quaternion.LookRotation (hit.normal));
-			Destroy (impact, 2.0f);
+			Destroy (impact, .1f);
 		}
 
 	}
 
 	void Fire(){
-
-		GameObject bullet = Instantiate (
-			laser,
-			laserSpawn.position,
-			laserSpawn.rotation);
-
+        
+        /*
 		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 10;
 
 		Destroy(bullet, 2.0f);
-
+        */
 
 
 	}

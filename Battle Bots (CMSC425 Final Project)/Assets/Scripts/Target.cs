@@ -3,17 +3,22 @@ using UnityEngine;
 
 public class Target : MonoBehaviour {
 
-	public float health = 50f;
-	Animator animator;
-	bool dead = false;
-	void Start(){
-		
-		animator = GetComponent<Animator> ();
-		animator.SetBool ("dead", dead);
+	public float health = 10f;
 
+	Animator animator;
+    BoxCollider box;
+
+	bool dead = false;
+
+
+	void Start()
+    {
+		animator = GetComponent<Animator> ();
+        box = GetComponent<BoxCollider> ();
 	}
 
-	public void TakeDamage(float amount){
+	public void TakeDamage(float amount)
+    {
 		
 		health -= amount;
 		Debug.Log (health);
@@ -23,10 +28,11 @@ public class Target : MonoBehaviour {
 		}
 	}
 
-	void Die(){
+	private void Die(){
 		dead = true;
 		animator.SetBool ("dead", dead);
-		//animator.enabled = true;
+        //animator.enabled = true;
+        box.enabled = false;
 		Destroy (gameObject, 5f);
 	}
 }

@@ -28,6 +28,6 @@ public class UpgradeManager : MonoBehaviour {
 
     public void ContinueToGame()
     {
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("Level Tester");
     }
 }
