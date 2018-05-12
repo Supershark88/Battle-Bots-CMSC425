@@ -21,7 +21,7 @@ public class Target : MonoBehaviour {
     {
 		
 		health -= amount;
-		Debug.Log (health);
+
 		if (health <= 0f) {
 
 			Die ();
