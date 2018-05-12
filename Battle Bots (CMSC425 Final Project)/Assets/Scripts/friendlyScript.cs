@@ -124,8 +124,11 @@ public class friendlyScript : MonoBehaviour {
 					rb.AddForce (enemy.transform.position * 30);
 
 				}
-				GameObject impact = Instantiate (impactEffect, enemy.transform.position, Quaternion.LookRotation (enemy.transform.position.normalized));
-				Destroy (impact, .1f);
+				if (impactEffect != null) {
+					GameObject impact = Instantiate (impactEffect, new Vector3(enemy.transform.position.x + Random.Range(.5f, 1f), enemy.transform.position.y + Random.Range(0, 2.5f), enemy.transform.position.z) , Quaternion.LookRotation (enemy.transform.position.normalized));
+					Destroy (impact, .1f);
+				}
+
 
 			}
 		}
