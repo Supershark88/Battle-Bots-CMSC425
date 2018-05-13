@@ -32,10 +32,10 @@ public class playerController : MonoBehaviour {
 
 
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0, moveVertical);
+		//Vector3 movement = new Vector3 (moveHorizontal, 0, moveVertical);
 		Vector3 rotation = new Vector3 (0, moveHorizontal, 0);
 		Quaternion deltaRotation = Quaternion.Euler(rotation * speed);
-		Vector3 orient = new Vector3 (0, 0, 0);
+		//Vector3 orient = new Vector3 (0, 0, 0);
 
 
 

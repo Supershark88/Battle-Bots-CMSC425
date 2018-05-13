@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour {
 
     private void Die()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("Menu");
     }
 

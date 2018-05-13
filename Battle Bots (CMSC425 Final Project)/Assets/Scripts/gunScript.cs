@@ -33,11 +33,9 @@ public class gunScript : MonoBehaviour {
 		if (Physics.Raycast (fpsCam.transform.position, fpsCam.transform.forward, out hit, range)) {
 
 
-
-			Target target = hit.transform.GetComponent<Target> ();
-			if (target != null) {
-
-				target.TakeDamage (damage);
+			if (hit.transform.tag == "Enemy") {
+                Target target = hit.transform.GetComponent<Target>();
+                target.TakeDamage (damage);
 			}
 
 			if (hit.rigidbody != null) {
