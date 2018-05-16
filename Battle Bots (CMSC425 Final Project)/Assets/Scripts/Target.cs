@@ -1,31 +1,47 @@
 ﻿
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Target : MonoBehaviour {
 
-	public float health = 10f;
+	public int health = 10;
+    public bool player;
 
-	private Animator animator;
+    private int playerDamageIncrease;
+    private int playerSpeedIncrease;
+
+    public int maxhealth; 
+
+    private Animator animator;
     private BoxCollider box;
     private Rigidbody body;
     private NavMeshAgent nav;
 
 	bool dead = false;
 
-
 	void Start()
     {
-        box = GetComponent<BoxCollider> ();
-        body = GetComponent<Rigidbody>();
-        if (this.tag != "Inanimate")
+        if (player)
         {
-            animator = GetComponent<Animator>();
-            nav = GetComponent<NavMeshAgent>();
+            health = PlayerPrefs.GetInt("PlayerHealth");
+            playerDamageIncrease = PlayerPrefs.GetInt("PlayerDamage");
+            playerSpeedIncrease = PlayerPrefs.GetInt("PlayerSpeed");
         }
+        else
+        {
+            box = GetComponent<BoxCollider>();
+            body = GetComponent<Rigidbody>();
+            if (this.tag != "Inanimate")
+            {
+                animator = GetComponent<Animator>();
+                nav = GetComponent<NavMeshAgent>();
+            }
+        }
+        maxhealth = health;
 	}
 
-	public void TakeDamage(float amount)
+	public void TakeDamage(int amount)
     {
 		
 		health -= amount;
@@ -41,18 +57,57 @@ public class Target : MonoBehaviour {
 		}
 	}
 
-	private void Die(){
-		dead = true;
-        body.velocity = Vector3.zero;
-        body.angularVelocity = Vector3.zero;
-        if (nav != null)
+    public void Heal(int amount)
+    {
+
+        health += amount;
+
+        if (health > maxhealth)
         {
-            nav.speed = 0;
-            nav.angularSpeed = 0;
+            health = maxhealth;
         }
-        animator.SetBool ("dead", dead);
-        //animator.enabled = true;
-        box.enabled = false;
-		Destroy (gameObject, 5f);
+    }
+
+    public int maxHealth()
+    {
+        return maxhealth;
+    }
+
+    public int playerDamage()
+    {
+        return playerDamageIncrease;
+    }
+
+    public int playerSpeed()
+    {
+        return playerSpeedIncrease;
+    }
+
+    public bool isDead()
+    {
+        return dead;
+    }
+
+	private void Die() {
+        if (player)
+        {
+            dead = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            dead = true;
+            body.velocity = Vector3.zero;
+            body.angularVelocity = Vector3.zero;
+            if (nav != null)
+            {
+                nav.speed = 0;
+                nav.angularSpeed = 0;
+            }
+            animator.SetBool("dead", dead);
+            //animator.enabled = true;
+            box.enabled = false;
+            Destroy(gameObject, 5f);
+        }
 	}
 }

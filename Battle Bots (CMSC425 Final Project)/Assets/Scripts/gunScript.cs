@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class gunScript : MonoBehaviour {
 
-	public float damage = 10f;
+	public int damage;
 	public float range = 100f;
 	public float fireRate = 1f;
 
@@ -15,8 +15,14 @@ public class gunScript : MonoBehaviour {
 	public GameObject impactEffect;
 
 	private float nextTimeToFire = 0f;
-	// Update is called once per frame
-	void Update () {
+
+    void Start ()
+    {
+        damage = PlayerPrefs.GetInt("PlayerDamage");
+    }
+
+    // Update is called once per frame
+    void Update () {
 
 		if (Input.GetButton ("Fire1") && Time.time >=nextTimeToFire) {
 

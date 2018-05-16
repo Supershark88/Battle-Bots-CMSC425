@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Friendly
   - Enemy
+  - Scrap
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Ally
   - 
   - 
   - 
