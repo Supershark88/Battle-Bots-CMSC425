@@ -96,6 +96,11 @@ public class Target : MonoBehaviour {
         }
         else
         {
+            if (gameObject.tag.CompareTo("Enemy") == 0)
+            {
+                int scrap = PlayerPrefs.GetInt("Scrap");
+                PlayerPrefs.SetInt("Scrap", scrap + 100);
+            }
             dead = true;
             body.velocity = Vector3.zero;
             body.angularVelocity = Vector3.zero;
